@@ -44,13 +44,13 @@ function ssrp_widget_options_form( $instance, $object ) {
       'label'      => 'Post Type',
       'field_type' => 'select',
       'name'       => $object->get_field_name('post_type'),
-      'value'      => ssrp_option_foreach( $post_types, $post_type ),
+      'value'      => ssrp_option_loop( $post_types, $post_type, 'foreach' ),
     )),
     'number-of-posts' => ssrp_make_field( array(
       'label'      => 'Number of Posts Displayed',
       'field_type' => 'select',
       'name'       => $object->get_field_name('num_posts'),
-      'value'      => '',
+      'value'      => ssrp_option_loop( 6, $num_posts, 'for' ),
     )),
   );
 
@@ -61,7 +61,7 @@ function ssrp_widget_options_form( $instance, $object ) {
   // Itterate through `$fields` array and add the strings to `$output`.
   foreach ( $fields as $field ) {
 
-    $ouput .= $field;
+    $output .= $field;
 
   }
 
