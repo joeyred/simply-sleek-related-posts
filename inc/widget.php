@@ -84,7 +84,6 @@ class Simply_Sleek_Related_Posts extends WP_Widget {
 		$instance 			   		 = $old_instance;
 		$instance['title'] 	   = strip_tags($new_instance['title']);
 		$instance['num_posts'] = $new_instance['num_posts'];
-		// FIXME: num_posts does not store value on save.
 		$instance['post_type'] = $new_instance['post_type'];
 
 		return $instance;
