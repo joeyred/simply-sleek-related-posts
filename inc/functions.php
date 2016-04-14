@@ -67,22 +67,48 @@ function ssrp_which_markup() {
 }
 
 /**
+ * Add selected attribute and value if option matches instance.
+ *
+ * @since 0.1.0
+ * 
+ * @param  string|int $instance       Stored value from database
+ * @param  string|int $current_option Current option that `$insatnce` is checked against.
+ * @return string                     Attribute or empty string.
+ */
+function ssrp_check_selected_option( $instance, $current_option ) {
+
+  if ( $instance === $current_option ) {
+
+    $output = ' selected="selected"';
+
+  } else {
+
+    $output = '';
+
+  }
+
+  return $output;
+}
+
+/**
  * Generate options in a select element.
  *
  * If the passed value of `$loop` is `for`, then this function will output option elements
  * built with a for loop setting values to be passed through a `sprintf()` pattern, for
- * which `$value` is an integer. If the passed value is 'foreach', the same will be
- * executed via a foreach loop, however, `$value` is an array to be iterated through.
+ * which `$instance` is an integer. If the passed value is 'foreach', the same will be
+ * executed via a foreach loop, however, `$instance` is an array to be iterated through.
  *
  * @since 0.1.0
  *
- * @param  int|array  $options either max int (for) or array of options (foreach).
- * @param  int|string $value   value of form field taken from `$insatnce`.
- * @param  string     $loop    loop to use. accpepted values are `for` and `foreach`.
+ * @uses ssrp_check_selected_option() Check if option matches stored value in `$instance`.
  *
- * @return string              Markup.
+ * @param  int|array  $options  Either max int (for) or array of options (foreach).
+ * @param  int|string $instance Value of form field taken from `$insatnce`.
+ * @param  string     $loop     Loop to use. accpepted values are `for` and `foreach`.
+ *
+ * @return string               Markup.
  */
-function ssrp_option_loop( $options, $value, $loop ) {
+function ssrp_option_loop( $options, $instance, $loop ) {
 
   // Empty variable to add onto.
   $output = '';
@@ -91,20 +117,12 @@ function ssrp_option_loop( $options, $value, $loop ) {
   if ( $loop === 'for' ) {
 
     // `sprintf()` pattern markup.
-    $field = '<option value="%1$d" %2$s>%1$d</option>';
+    $field = '<option value="%1$d"%2$s>%1$d</option>';
 
     for ($i = 1; $i <= $options; $i++ ) {
 
       // Add 'selected' attribute if stored instance matches option.
-      if ( $value === $i ) {
-
-        $selected = 'selected="selected"';
-
-      } else {
-
-        $selected = '';
-
-      }
+      $selected = ssrp_check_selected_option( $instance, $i );
 
       $output .= sprintf( $field, $i, $selected );
 
@@ -113,20 +131,12 @@ function ssrp_option_loop( $options, $value, $loop ) {
   } elseif ( $loop === 'foreach' ) {
 
     // `sprintf()` pattern markup.
-    $field = '<option value="%1$s" %2$s>%1$s</option>';
+    $field = '<option value="%1$s"%2$s>%1$s</option>';
 
     foreach ( $options as $option ) {
 
       // Add 'selected' attribute if stored instance matches option.
-      if ( $value === $option ) {
-
-        $selected = 'selected="selected"';
-
-      } else {
-
-        $selected = '';
-
-      }
+      $selected = ssrp_check_selected_option( $instance, $option );
 
       $output .= sprintf( $field, $option, $selected );
 
