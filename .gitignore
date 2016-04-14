@@ -1,5 +1,6 @@
 DS_Store
 ref
 node_modules/
-./css
-./js
+css
+js
+!src/js
