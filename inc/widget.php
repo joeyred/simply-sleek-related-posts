@@ -84,6 +84,7 @@ class Simply_Sleek_Related_Posts extends WP_Widget {
 		$instance 			   		 = $old_instance;
 		$instance['title'] 	   = strip_tags($new_instance['title']);
 		$instance['num_posts'] = $new_instance['num_posts'];
+		// FIXME: num_posts does not store value on save.
 		$instance['post_type'] = $new_instance['post_type'];
 
 		return $instance;
@@ -99,6 +100,20 @@ class Simply_Sleek_Related_Posts extends WP_Widget {
 	 * @param array $instance Previously saved values from database.
 	 */
   function form( $instance ) {
+
+		// Check Values
+	  if ( $instance ) {
+
+	    $instance['title'] 	   = esc_attr($instance['title']);
+	    $instance['num_posts'] = esc_attr($instance['num_posts']);
+	    $instance['post_type'] = esc_attr($instance['post_type']);
+
+	  } else {
+
+	    $instance['title']     = '';
+	    $instance['num_posts'] = '';
+	    $instance['post_type'] = '';
+	  }
 
 		$form = ssrp_widget_options_form( $instance, $this );
 
