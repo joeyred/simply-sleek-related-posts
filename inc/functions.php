@@ -116,6 +116,9 @@ function ssrp_option_loop( $options, $instance, $loop ) {
   // For Loop
   if ( $loop === 'for' ) {
 
+    // Convert string to integer. If you don't do this, the stored value will not display.
+    $instance = (int)$instance;
+
     // `sprintf()` pattern markup.
     $field = '<option value="%1$d"%2$s>%1$d</option>';
 
