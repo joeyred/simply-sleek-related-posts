@@ -69,13 +69,18 @@ function ssrp_which_markup() {
 /**
  * Generate options in a select element.
  *
+ * If the passed value of `$loop` is `for`, then this function will output option elements
+ * built with a for loop setting values to be passed through a `sprintf()` pattern, for
+ * which `$value` is an integer. If the passed value is 'foreach', the same will be
+ * executed via a foreach loop, however, `$value` is an array to be iterated through.
+ *
  * @since 0.1.0
  *
- * @param  int|array $options either max int (for) or array of options (foreach)
+ * @param  int|array  $options either max int (for) or array of options (foreach).
  * @param  int|string $value   value of form field taken from `$insatnce`.
- * @param  string $loop    loop to use. accpepted values are `for` and `foreach`.
+ * @param  string     $loop    loop to use. accpepted values are `for` and `foreach`.
  *
- * @return string          Markup.
+ * @return string              Markup.
  */
 function ssrp_option_loop( $options, $value, $loop ) {
 
@@ -146,6 +151,10 @@ function ssrp_option_loop( $options, $value, $loop ) {
  *  - `wrapper` (default is a paragarph element),
  *    - string (`sprintf()` parrtern markup for wrapper around field element),
  *    - `false` (output field markup without a wrapping element),
+ *
+ * Conditionally create markup based upon passed values for form fields via multiple
+ * `sprintf()` patterns. This function can output different types of form fields with a
+ * variety of options, with or without a wrapping element.
  *
  * @since 0.1.0
  *
