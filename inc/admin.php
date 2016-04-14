@@ -7,12 +7,16 @@
  * @package SSRP\Admin
  */
 
-// Options and input
-  // Widget Title
-  // Number of Posts displayed
-  // Post Type
-  //
-
+/**
+ * Builds out form fields for Simply_Sleek_Related_Posts::form() method.
+ *
+ * @since 0.1.0
+ *
+ * @param  mixed $instance Saved values.
+ * @param  mixed $object   `$this` from widget sub-class.
+ *
+ * @return string           Markup.
+ */
 function ssrp_widget_options_form( $instance, $object ) {
 
   // Get all registered post types
@@ -66,13 +70,6 @@ function ssrp_widget_options_form( $instance, $object ) {
   }
 
   return $output;
-
-  /*
-   * TODO: Create a function that performs necessary sprintf()s with passed values.
-   * 			 Details may need to be hammered out better but values could be $wrapper,
-   * 			 $field_type, $label, $args
-   */
-  //
 }
 
 // Settings Page
