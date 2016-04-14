@@ -94,6 +94,8 @@ class Simply_Sleek_Related_Posts extends WP_Widget {
 	 *
 	 * @see WP_Widget::form()
 	 *
+	 * @uses ssrp_widget_options_form() Build out options form.
+	 *
 	 * @param array $instance Previously saved values from database.
 	 */
   function form( $instance ) {

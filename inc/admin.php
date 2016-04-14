@@ -12,8 +12,8 @@
  *
  * @since 0.1.0
  *
- * @param  mixed $instance Saved values.
- * @param  mixed $object   `$this` from widget sub-class.
+ * @param  array $instance Saved values.
+ * @param  array $object   `$this` from widget sub-class.
  *
  * @return string           Markup.
  */
@@ -71,6 +71,14 @@ function ssrp_widget_options_form( $instance, $object ) {
 
   return $output;
 }
+
+/*
+ * IDEA: Have the amount of posts per row configurable via the global settings page, but
+ * 			 either have an option on the settings page to allow for this option to be set
+ * 			 individual per widget via options on the widget, or have a selectable option in
+ * 			 the widget options which, when checked, overrides global settings and opens up
+ * 			 new options to configure the widget independently. The latter may be best.
+ */
 
 // Settings Page
   // Choose Styling
