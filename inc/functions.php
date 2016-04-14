@@ -70,7 +70,7 @@ function ssrp_which_markup() {
  * Add selected attribute and value if option matches instance.
  *
  * @since 0.1.0
- * 
+ *
  * @param  string|int $instance       Stored value from database
  * @param  string|int $current_option Current option that `$insatnce` is checked against.
  * @return string                     Attribute or empty string.
@@ -187,7 +187,7 @@ function ssrp_make_field( $args = array() ) {
 
   $field_types = array(
     'text' => '<input class="widefat" name="%s" type="text" value="%s" />',
-    'select' => '<select name="%s" type="text">%s</select>',
+    'select' => '<select name="%s">%s</select>',
     'option' => '<option value="%s" %s>%s</option>'
   );
 
