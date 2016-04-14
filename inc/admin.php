@@ -54,13 +54,7 @@ function ssrp_widget_options_form( $instance, $object ) {
       'label'      => 'Number of Posts Displayed',
       'field_type' => 'select',
       'name'       => $object->get_field_name('num_posts'),
-      'value'      => ssrp_option_loop( 6, $instance['num_posts'], 'for' ),
-    )),
-    'test-for-loop-selection' => ssrp_make_field( array(
-      'label'      => 'Test the For Loop',
-      'field_type' => 'select',
-      'name'       => 'testing',
-      'value'      => ssrp_option_loop( 6, 3, 'for' ),
+      'value'      => ssrp_option_loop( '6', $instance['num_posts'], 'for' ),
     )),
   );
 
