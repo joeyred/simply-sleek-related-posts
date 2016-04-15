@@ -61,6 +61,7 @@
 			}
 		}
 		&:hover {
+			text-decoration: none; // Stop any extra link :hover styles from frameworks
 			.ssrp-hover-overlay {
 				opacity: 1;
 				transition: opacity .3s ease-in-out;
