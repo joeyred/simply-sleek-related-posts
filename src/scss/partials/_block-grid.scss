@@ -1,0 +1,42 @@
+// Simply Sleek Related Posts
+//
+// Licensed under GPL-3.0
+
+ul.ssrp-block-grid {
+	list-style: none;
+	dispaly: block;
+	width: 100%;
+	@include clearfix;
+	li {
+		display: block;
+		list-style: none;
+		float: left;
+		margin-bottom: 1rem;
+	}
+	@include block-grid('small', 3 );
+
+	@media only screen and (min-width: $medium) {
+
+		@include block-grid('medium', 4 );
+
+	}
+
+	@media only screen and (min-width: $large) {
+
+		@include block-grid('large', 6 );
+
+	}
+
+	@media only screen and (min-width: $xlarge) {
+
+		@include block-grid('xlarge', 6 );
+
+	}
+
+	@media only screen and (min-width: $xxlarge) {
+
+		@include block-grid('xxlarge', 8 );
+
+	}
+
+}

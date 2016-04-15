@@ -1,0 +1,79 @@
+// Simply Sleek Related Posts
+//
+// Licensed under GPL-3.0
+
+.ssrp-related-post-widget {
+  .ssrp-widget-title {
+		text-align: center;
+		font-size: 2.5rem;
+		margin-bottom: 3rem;
+	}
+}
+.ssrp-related-post {
+	.ssrp-related-post-outer {
+		position: relative;
+		background: {
+				position: 50% 50%;
+				size: cover;
+				repeat: no-repeat;
+				attachment: scroll;
+			}
+		.ssrp-related-post-inner {
+			padding: 2rem;
+			background: rgba(30, 30, 30, 0.2);
+		}
+	}
+  a.ssrp-related-post-link-wrap {
+
+		h3.ssrp-post-title {
+			color: white;
+
+			margin-bottom: 4rem;
+			transition: color .4s ease-in-out;
+		}
+		h6.ssrp-post-time {
+			color: white;
+			transition: color .4s ease-in-out;
+		}
+		h6.ssrp-post-author {
+			color: white;
+			transition: color .4s ease-in-out;
+		}
+		.ssrp-hover-overlay {
+			opacity: 0;
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 100%;
+			background: rgba(30, 30, 30, 0.9);
+			transition: all .4s ease-in-out;
+
+			span.ssrp-read-more-link {
+				color: white;
+				font: {
+					size: 2.5rem;
+					weight: 200;
+				}
+				line-height: 0;
+				text-align: center;
+				display: block;
+			}
+		}
+		&:hover {
+			.ssrp-hover-overlay {
+				opacity: 1;
+				transition: opacity .3s ease-in-out;
+			}
+			h3.ssrp-post-title {
+			color: gray;
+			}
+			h6.ssrp-post-time {
+				color: gray;
+			}
+			h6.ssrp-post-author {
+				color: gray;
+			}
+		}
+	}
+}
