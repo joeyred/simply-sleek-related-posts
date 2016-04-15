@@ -15,12 +15,12 @@ var PORT = 3000;
 var COMPATIBILITY = ['last 2 versions', 'ie >= 9'];
 
 gulp.task('browserSync', function() {
-	 browserSync.init({
-		  port: PORT
-	  , proxy: "wordpress-themes.dev"
-	  , notify: true // boolean value, Toggle notifications of bsync activity
-	  ,	open: false // toggle auotmatic opening of webpage upong bsync starting
-    });
+	browserSync.init({
+		port:   PORT,
+	  proxy:  "wordpress-themes.dev",
+	  notify: true, // boolean value, Toggle notifications of bsync activity
+	  open:   false // toggle auotmatic opening of webpage upong bsync starting
+  });
 });
 
 /*
@@ -34,10 +34,10 @@ gulp.task('clean', function() {
 
 /* Compile SCSS */
 gulp.task('compileSass', function() {
-	return gulp.src('src/scss/ssrp.scss')
+	return gulp.src('src/scss/*.scss')
 		.pipe(plugin.sourcemaps.init())
 		.pipe(plugin.sass({
-			includePaths: 'src/scss'
+			includePaths: 'src/scss/partials'
 		})
 			.on('error', plugin.sass.logError)
 		)
