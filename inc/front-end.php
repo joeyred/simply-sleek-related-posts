@@ -34,13 +34,13 @@ function ssrp_do_post_card() {
   <?php
 }
 
-function ssrp_do_frontend_markup($markup) {
+function ssrp_do_frontend_markup() {
 
   $num_cards = 6;
 
   echo '<div class="ssrp-related-post-widget">';
 
-  if ( $markup === 'default' ) {
+  if ( ssrp_which_markup() === 'ssrp' ) {
     ?>
 
 
@@ -60,9 +60,11 @@ function ssrp_do_frontend_markup($markup) {
       </ul>
 
     <?php
-  } elseif ( $markup === 'bootstrap' ) {
+  } elseif ( ssrp_which_markup() === 'bootstrap' ) {
     ?>
     <div class="row">
+
+      <h3 class="widget-title">Widget Title</h3>
 
       <?php
       for ( $i = 0; $i < $num_cards; $i++ ) {
@@ -74,9 +76,11 @@ function ssrp_do_frontend_markup($markup) {
 
     </div>
     <?php
-  } elseif ( $markup === 'foundation5' ) {
+  } elseif ( ssrp_which_markup() === 'foundation5' ) {
     ?>
     <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
+
+      <h3 class="widget-title">Widget Title</h3>
 
       <?php
       for ( $i = 0; $i < $num_cards; $i++ ) {
@@ -87,9 +91,12 @@ function ssrp_do_frontend_markup($markup) {
       ?>
     </ul>
     <?php
-  } elseif ( $markup === 'foundation6' ) {
+  } elseif ( ssrp_which_markup() === 'foundation6' ) {
     ?>
-    <div class="row small-up-1 medium-up-2 large-up-4">
+    <div class="row small-up-1 medium-up-2 large-up-3">
+
+      <h3 class="widget-title">Widget Title</h3>
+
       <?php
       for ( $i = 0; $i < $num_cards; $i++ ) {
         echo '<div class="column ssrp-related-post">';
