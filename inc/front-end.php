@@ -3,8 +3,8 @@
 function ssrp_do_post_card() {
 
   ?>
-  <li class="ssrp-related-post">
-    <a class="ssrp-related-post-link-wrap" href="" title="">
+
+  <a class="ssrp-related-post-link-wrap" href="" title="">
 
     <div class="ssrp-related-post-outer">
 
@@ -28,28 +28,77 @@ function ssrp_do_post_card() {
 
     </div>
 
-    </a>
-  </li>
+  </a>
+
 
   <?php
 }
 
-function ssrp_do_frontend_markup() {
-  ?>
+function ssrp_do_frontend_markup($markup) {
 
-  <div class="ssrp-related-post-widget">
+  $num_cards = 6;
 
-    <h3 class="ssrp-widget-title">Widget Title</h3>
+  echo '<div class="ssrp-related-post-widget">';
 
-    <ul class="ssrp-block-grid">
+  if ( $markup === 'default' ) {
+    ?>
+
+
+      <h3 class="ssrp-widget-title">Widget Title</h3>
+
+      <ul class="ssrp-block-grid ssrp-small-block-grid-1 ssrp-medium-block-grid-2 ssrp-large-block-grid-3">
+        <?php
+        for ( $i = 0; $i < $num_cards; $i++ ) {
+
+          echo '<li class="ssrp-related-post">';
+
+          ssrp_do_post_card();
+
+          echo '</li>';
+         }
+        ?>
+      </ul>
+
+    <?php
+  } elseif ( $markup === 'bootstrap' ) {
+    ?>
+    <div class="row">
+
       <?php
-      for ( $i = 0; $i < 3; $i++ ) {
-
+      for ( $i = 0; $i < $num_cards; $i++ ) {
+        echo '<div class="col-sm-12 col-md-6 col-lg-4 ssrp-related-post">';
         ssrp_do_post_card();
+        echo '</div>';
+       }
+      ?>
+
+    </div>
+    <?php
+  } elseif ( $markup === 'foundation5' ) {
+    ?>
+    <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
+
+      <?php
+      for ( $i = 0; $i < $num_cards; $i++ ) {
+        echo '<li class="ssrp-related-post">';
+        ssrp_do_post_card();
+        echo '</li>';
        }
       ?>
     </ul>
-  </div>
-
-  <?php
+    <?php
+  } elseif ( $markup === 'foundation6' ) {
+    ?>
+    <div class="row small-up-1 medium-up-2 large-up-4">
+      <?php
+      for ( $i = 0; $i < $num_cards; $i++ ) {
+        echo '<div class="column ssrp-related-post">';
+        ssrp_do_post_card();
+        echo '</div>';
+       }
+      ?>
+    </div>
+    <?php
+  }
+  echo '</div>';
 }
