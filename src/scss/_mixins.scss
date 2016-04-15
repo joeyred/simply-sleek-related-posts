@@ -1,0 +1,36 @@
+
+@mixin clearfix {
+  &::before,
+  &::after {
+    content: ' ';
+    display: table;
+    // flex-basis: 0;
+    // order: 1;
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+@mixin block-grid( $media, $max-per-row ) {
+
+  @for $i from 1 through $max-per-row {
+
+    $block-gutter: 1%;
+    $block-width: (100% / $i);
+
+    &.ssrp-#{$media}-block-grid-#{$i} {
+      li {
+        width: $block-width;
+        padding: {
+          right: $block-gutter;
+          left: $block-gutter;
+        }
+        // &:nth-child(#{$i}n+1) {
+        //   clear: left;
+        // }
+      }
+    }
+  }
+}

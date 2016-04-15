@@ -1,0 +1,43 @@
+{
+  "name": "simply-sleek-related-posts",
+  "version": "0.1.0",
+  "description": "A simple, yet sleek and stylish plugin for adding related posts to a page as a widget.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://joeyred@github.com/joeyred/simply-sleek-related-posts.git"
+  },
+  "keywords": [
+    "wordpress",
+    "plugin"
+  ],
+  "author": "Joey Hayes",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/joeyred/simply-sleek-related-posts/issues"
+  },
+  "homepage": "https://github.com/joeyred/simply-sleek-related-posts#readme",
+  "devDependencies": {
+    "browser-sync": "^2.10.0",
+    "del": "^1.2.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^2.2.0",
+    "gulp-bower": "0.0.11",
+    "gulp-clean-css": "^2.0.6",
+    "gulp-concat": "^2.5.2",
+    "gulp-cssnano": "^2.0.0",
+    "gulp-if": "^1.2.5",
+    "gulp-imagemin": "^2.2.1",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-merge-media-queries": "^0.2.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.1.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.2.0",
+    "gulp-uncss": "^1.0.1",
+    "run-sequence": "^1.1.5"
+  }
+}
