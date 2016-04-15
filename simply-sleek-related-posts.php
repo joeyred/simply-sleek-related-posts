@@ -22,6 +22,15 @@
  * GitHub Plugin URI: https://github.com/joeyred/simply-sleek-related-posts
  */
 
+
 require( 'inc/functions.php' );
 require( 'inc/admin.php' );
+require( 'inc/front-end.php' );
 require( 'inc/widget.php' );
+
+add_action( 'wp_enqueue_scripts', 'ssrp_enqueue' );
+function ssrp_enqueue() {
+
+  wp_enqueue_style( 'ssrp_main_css', plugins_url( 'simply-sleek-related-posts/css/ssrp.css' ) );
+  wp_enqueue_script( 'ssrp_main_js', plugins_url( 'simply-sleek-related-posts/js/ssrp.js' ), array( 'jquery' ), '', true );
+}
