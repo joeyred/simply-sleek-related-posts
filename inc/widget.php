@@ -28,7 +28,7 @@ class Simply_Sleek_Related_Posts extends WP_Widget {
 	 */
 	function widget( $args, $instance ) {
 
-  	ssrp_do_frontend_markup();
+  	ssrp_do_frontend_markup('default');
 
 	}
 	/**
