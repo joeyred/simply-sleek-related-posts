@@ -31,6 +31,15 @@ require( 'inc/widget.php' );
 add_action( 'wp_enqueue_scripts', 'ssrp_enqueue' );
 function ssrp_enqueue() {
 
-  wp_enqueue_style( 'ssrp_main_css', plugins_url( 'simply-sleek-related-posts/css/ssrp.css' ) );
+  if ( ssrp_which_markup() === 'ssrp' ) {
+    wp_enqueue_style( 'ssrp_main', plugins_url( 'simply-sleek-related-posts/css/ssrp.css' ) );
+  } elseif ( ssrp_which_markup() === 'bootstrap' ) {
+    wp_enqueue_style( 'ssrp_bootstrap', plugins_url( 'simply-sleek-related-posts/css/ssrp-bootstrap.css' ) );
+  } elseif ( ssrp_which_markup() === 'foundation5' ) {
+    wp_enqueue_style( 'ssrp_foundation5', plugins_url( 'simply-sleek-related-posts/css/ssrp-foundation5.css' ) );
+  } elseif ( ssrp_which_markup() === 'foundation6' ) {
+    wp_enqueue_style( 'ssrp_foundation6', plugins_url( 'simply-sleek-related-posts/css/ssrp-foundation6.css' ) );
+  }
+
   wp_enqueue_script( 'ssrp_main_js', plugins_url( 'simply-sleek-related-posts/js/ssrp.js' ), array( 'jquery' ), '', true );
 }
