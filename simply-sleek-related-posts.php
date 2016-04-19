@@ -27,6 +27,7 @@ require( 'inc/functions.php' );
 require( 'inc/admin.php' );
 require( 'inc/front-end.php' );
 require( 'inc/widget.php' );
+require( 'inc/debug.php' );
 
 add_action( 'wp_enqueue_scripts', 'ssrp_enqueue' );
 function ssrp_enqueue() {
