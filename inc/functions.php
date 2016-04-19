@@ -8,13 +8,29 @@
 function ssrp_markup( $args = array() ) {
 
   $defaults = array(
-    'ssrp'        => '',
-    'bootstrap'   => '',
-    'foundation5' => '',
-    'foundation6' => '',
+    'ssrp'        => array( '', true ),
+    'bootstrap'   => array( '', true ),
+    'foundation5' => array( '', true ),
+    'foundation6' => array( '', true ),
     'universal'   => '',
     'echo'        => true,
   );
+
+  // Check if args values are arrays, and if not, convert to array for final parsing.
+  foreach ( $args as $key => $value ) {
+
+    // end loop after array values.
+    if ( $key === 'universal' ) {
+      break;
+    }
+
+    if ( is_array($value) ) {
+      $args[$key] = $value;
+    } else {
+      $args[$key] = array( $value, true );
+    }
+
+  }
 
   // Parse args
   $args = wp_parse_args( $args, $defaults );
@@ -23,18 +39,20 @@ function ssrp_markup( $args = array() ) {
   $current_markup = ssrp_which_markup();
 
   // Use correct markup
-  $markup = $args[$current_markup];
+  $markup_array = $args[$current_markup];
 
   // If the value is empty, just return an empty string
-  if ( ! $markup ) {
+  if ( ! isset($markup_array[0]) ) {
 
     return '';
   }
 
   // Check for universal class and add it
-  if ( $args['universal'] ) {
+  if ( $args['universal'] && $markup_array[1] ) {
 
-    $markup = sprintf( $markup, $args['universal'] );
+    $markup = sprintf( $markup_array[0], $args['universal'] );
+  } else {
+    $markup = $markup_array[0];
   }
   // If `$args['echo']` is `true`, echo `$markup`, else return it.
   if ( $args['echo'] ) {
@@ -45,6 +63,26 @@ function ssrp_markup( $args = array() ) {
 
     return $markup;
   }
+}
+
+function ssrp_attr( $args ) {
+
+  $defaults = array(
+    'ssrp'        => '',
+    'bootstrap'   => '',
+    'foundation5' => '',
+    'foundation6' => '',
+  );
+
+  $args = wp_parse_args( $args, $defaults );
+
+  // Get the current markup config
+  $current_markup = ssrp_which_markup();
+
+  // Use correct markup
+  $attr = $args[$current_markup];
+
+  return $attr;
 }
 
 // TODO: Create function that checks for the option value that determines which markup is used
