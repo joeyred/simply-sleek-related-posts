@@ -58,12 +58,11 @@ function ssrp_get_block_grid_classes() {
   } // TODO Replace with option values.
 
   // `sprintf()` patterns.
-  $class_pattern = ssrp_markup( array(
+  $class_pattern = ssrp_attr( array(
     'ssrp'        => 'ssrp-%s-block-grid-%s',
     'bootstrap'   => 'col-%s-%s',
     'foundation5' => '%s-block-grid-%s',
     'foundation6' => '%s-up-%s',
-    'echo'        => false,
   ) );
 
   // Variables needed to correctly set values in `foreach` loop.
@@ -91,98 +90,55 @@ function ssrp_get_block_grid_classes() {
 
 function ssrp_do_frontend_markup() {
 
-  // Options that will have to be pulled from options page
-  $num_cards = 6;
-  $per_row = array(
-    'small' => 1,
-    'medium' => 2,
-    'large' => 3,
-    'xlarge' => 3,
-    'xxlarge' => 4,
-  );
+  $num_posts = 6; // TODO Replace with option value
 
-
+  $block_classes = ssrp_get_block_grid_classes();
 
   echo '<div class="ssrp-related-post-widget">';
 
-  // Widget Title
+  // TODO Widget Title
     // From extracted `$args`
 
   // Block Grid Container - Open
   ssrp_markup( array(
-    'ssrp'        => '<ul class="ssrp-block-grid ssrp-small-block-grid-1 ssrp-medium-block-grid-2 ssrp-large-block-grid-3">',
-    'bootstrap'   => '<div class="row">',
-    'foundation5' => '<ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">',
-    'foundation6' => '<div class="row small-up-1 medium-up-2 large-up-3">',
+    'ssrp'        => '<ul class="ssrp-block-grid %s">',
+    'bootstrap'   => array( '<div class="row">', false ),
+    'foundation5' => '<ul class="%s">',
+    'foundation6' => '<div class="row %s">',
+    'universal'   => $block_classes,
   ) );
 
+  for ( $i = 0; $i < $num_posts; $i++ ) {
 
-  if ( ssrp_which_markup() === 'ssrp' ) {
-    ?>
+    ssrp_markup( array(
+      'ssrp'        => '<li class="%s">',
+      'bootstrap'   => '<div class="' . $block_classes . ' %s">',
+      'foundation5' => '<li class="%s">',
+      'foundation6' => '<div class="column %s">',
+      'universal'   => 'ssrp-related-post',
+    ) );
 
+    // TODO Card Content
+    ssrp_do_post_card();
 
-      <h3 class="ssrp-widget-title">Widget Title</h3>
-
-      <ul class="ssrp-block-grid ssrp-small-block-grid-1 ssrp-medium-block-grid-2 ssrp-large-block-grid-3">
-        <?php
-        for ( $i = 0; $i < $num_cards; $i++ ) {
-
-          echo '<li class="ssrp-related-post">';
-
-          ssrp_do_post_card();
-
-          echo '</li>';
-         }
-        ?>
-      </ul>
-
-    <?php
-  } elseif ( ssrp_which_markup() === 'bootstrap' ) {
-    ?>
-    <div class="row">
-
-      <h3 class="widget-title">Widget Title</h3>
-
-      <?php
-      for ( $i = 0; $i < $num_cards; $i++ ) {
-        echo '<div class="col-sm-12 col-md-6 col-lg-4 ssrp-related-post">';
-        ssrp_do_post_card();
-        echo '</div>';
-       }
-      ?>
-
-    </div>
-    <?php
-  } elseif ( ssrp_which_markup() === 'foundation5' ) {
-    ?>
-    <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
-
-      <h3 class="widget-title">Widget Title</h3>
-
-      <?php
-      for ( $i = 0; $i < $num_cards; $i++ ) {
-        echo '<li class="ssrp-related-post">';
-        ssrp_do_post_card();
-        echo '</li>';
-       }
-      ?>
-    </ul>
-    <?php
-  } elseif ( ssrp_which_markup() === 'foundation6' ) {
-    ?>
-    <div class="row small-up-1 medium-up-2 large-up-3">
-
-      <h3 class="widget-title">Widget Title</h3>
-
-      <?php
-      for ( $i = 0; $i < $num_cards; $i++ ) {
-        echo '<div class="column ssrp-related-post">';
-        ssrp_do_post_card();
-        echo '</div>';
-       }
-      ?>
-    </div>
-    <?php
+    // Close Block
+    ssrp_markup( array(
+      'ssrp'        => '</li>',
+      'bootstrap'   => '</div>',
+      'foundation5' => '</li>',
+      'foundation6' => '</div>',
+    ) );
   }
+
+  // Close Block Grid
+  ssrp_markup( array(
+    'ssrp'        => '</ul>',
+    'bootstrap'   => '</div>',
+    'foundation5' => '</ul>',
+    'foundation6' => '</div>',
+  ) );
+
+  // Close Widget Container
   echo '</div>';
+
 }
