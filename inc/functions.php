@@ -8,34 +8,22 @@
 function ssrp_markup( $args = array() ) {
 
   $defaults = array(
-    'ssrp'             => '',
-    'bootstrap'        => '',
-    'foundation-float' => '',
-    'foundation-flex'  => '',
-    'universal'        => '',
-    'echo'             => true,
+    'ssrp'        => '',
+    'bootstrap'   => '',
+    'foundation5' => '',
+    'foundation6' => '',
+    'universal'   => '',
+    'echo'        => true,
   );
 
   // Parse args
   $args = wp_parse_args( $args, $defaults );
 
-  // Check option value for contextual markup
-  if ( ssrp_which_markup() === 'bootstrap' ) {
+  // Get the current markup config
+  $current_markup = ssrp_which_markup();
 
-    $markup = $args['bootstrap'];
-
-  } elseif ( ssrp_which_markup() === 'foundation-float' ) {
-
-    $markup = $args['foundation-float'];
-
-  } elseif ( ssrp_which_markup() === 'foundation-flex' ) {
-
-    $markup = $args['foundation-flex'];
-
-  } else {
-
-    $markup = $args['ssrp'];
-  }
+  // Use correct markup
+  $markup = $args[$current_markup];
 
   // If the value is empty, just return an empty string
   if ( ! $markup ) {
@@ -48,7 +36,7 @@ function ssrp_markup( $args = array() ) {
 
     $markup = sprintf( $markup, $args['universal'] );
   }
-
+  // If `$args['echo']` is `true`, echo `$markup`, else return it.
   if ( $args['echo'] ) {
 
     echo $markup;
