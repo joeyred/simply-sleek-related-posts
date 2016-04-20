@@ -5,23 +5,43 @@
  * @since 0.1.0
  */
 
-function ssrp_do_post_card() {
+function ssrp_do_post_card( $post ) {
+
+  setup_postdata( $post );
+
+  if ( has_post_thumbnail() ) {
+
+    $thumbnail_src = wp_get_attachment_url( get_post_thumbnail_id( $post->ID ) );
+
+    $atts = array(
+      'style' => sprintf( ' style="background-image: url(%s);"', $thumbnail_src ),
+      'class' => ' related-post-thumbnail',
+    );
+
+  } else {
+    $atts = array(
+      'style' => '',
+      'class' => ' ssrp-placeholder',
+    );
+  }
+
+  $card_bg = sprintf( 'class="ssrp-related-post-outer%s"%s', $atts['class'], $atts['style'] );
 
   ?>
 
-  <a class="ssrp-related-post-link-wrap" href="" title="">
+  <a class="ssrp-related-post-link-wrap" href="<?php the_permalink() ?>" title="<?php the_title_attribute(); ?>">
 
-    <div class="ssrp-related-post-outer">
+    <div <?php echo $card_bg; ?>>
 
       <div class="ssrp-related-post-inner">
 
-        <h3 class="ssrp-post-title">Post Title</h3>
+        <h3 class="ssrp-post-title"><?php the_title(); ?></h3>
 
         <hr />
 
-        <h6 class="ssrp-post-time">Time Published</h6>
+        <h6 class="ssrp-post-time"><?php the_time('F j, Y'); ?></h6>
 
-        <h6 class="ssrp-post-author">by Author</h6>
+        <h6 class="ssrp-post-author">by <?php echo get_the_author();  ?></h6>
 
       </div>
 
@@ -34,9 +54,9 @@ function ssrp_do_post_card() {
     </div>
 
   </a>
-
-
   <?php
+
+  // IDEA add options to add framework typography classes to card elements
 }
 
 /**
@@ -88,16 +108,14 @@ function ssrp_get_block_grid_classes() {
   return $output;
 }
 
-function ssrp_do_frontend_markup() {
-
-  $num_posts = 6; // TODO Replace with option value
+function ssrp_do_frontend_markup( $related_posts, $widget_title ) {
 
   $block_classes = ssrp_get_block_grid_classes();
 
   echo '<div class="ssrp-related-post-widget">';
 
   // TODO Widget Title
-    // From extracted `$args`
+  echo $widget_title;
 
   // Block Grid Container - Open
   ssrp_markup( array(
@@ -108,7 +126,8 @@ function ssrp_do_frontend_markup() {
     'universal'   => $block_classes,
   ) );
 
-  for ( $i = 0; $i < $num_posts; $i++ ) {
+  global $post;
+  foreach( $related_posts as $post ) {
 
     ssrp_markup( array(
       'ssrp'        => '<li class="%s">',
@@ -119,7 +138,7 @@ function ssrp_do_frontend_markup() {
     ) );
 
     // TODO Card Content
-    ssrp_do_post_card();
+    ssrp_do_post_card( $post );
 
     // Close Block
     ssrp_markup( array(
